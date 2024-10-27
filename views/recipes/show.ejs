@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= recipe.name %></title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1><%= recipe.name %></h1>
+    <% if(String(user._id) === String(recipe.owner._id)){ %>
+        <h3>by You!</h3>
+    <% } else {%>
+        <h3>by <%= recipe.owner.username%></h3>
+    <% } %>
+    
+    <% recipe.ingredients.forEach((ingredient)=>{ %>
+          <li><%= ingredient.name %> </li>
+    <% }); %>
+    <p>
+        <%= recipe.instructions %>
+    </p>
+
+    <% if(String(user._id) === String(recipe.owner._id)){ %>
+        <p>
+            <form action="/users/<%= user._id %>/recipes/<%= recipe._id %>/edit" method="GET">
+                <button type="submit">Edit this recipe</button>
+            </form>
+            <form action="/users/<%= user._id %>/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
+                <button type="submit">Delete this recipe</button>
+            </form>
+        </p>
+    <% } %>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <%= currentRecipes[0].owner.username %>'s Recipes</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Welcome to <%= currentRecipes[0].owner.username %>'s Recipes</h1>
+    <ul>
+        <% currentRecipes.forEach((currentRecipe)=>{ %>
+                <a href="/users/<%=user._id%>/recipes/<%= currentRecipe._id %>">
+                    <li><h1><%= currentRecipe.name %> by <%= currentRecipe.owner.username %> </h2></li>
+                </a>
+        <% }); %>
+    </ul>
+
+</body>
+</html>

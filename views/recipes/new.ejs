@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a New Recipe</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+
+    <h1>Add a New Recipe</h1>
+    <form action="/users/<%=user._id%>/recipes" method="POST">
+        <label for="name">Recipe Name:</label>
+        <input type="text" name="name" id="name" required>
+
+        <label for="instructions">Recipe instructions</label>
+        <textarea name="instructions" id="instructions"></textarea>
+
+        <div>
+            <% ingredients.forEach((ingredient) => { %>
+                <label for="ingredient"><%= ingredient.name %></label>
+                <input type="checkbox" name="ingredients" value="<%= ingredient._id %>">
+            <% }); %>
+        </div>
+        <button type="submit">Add Recipe</button>
+    </form> 
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Chefs</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Welcome to all Chefs</h1>
+    
+    <ul>
+        <% users.forEach((chef)=>{ %>
+            <% if(String(user._id) !== String(chef._id)) {%>
+                <a href="/users/<%=user._id%>/chefs/<%= chef._id %>">
+                    <li><h1><%= chef.username %></li>
+                </a>
+            <% } %>
+        <% }); %>
+    </ul>
+
+</body>
+</html>
